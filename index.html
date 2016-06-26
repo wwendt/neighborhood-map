@@ -16,13 +16,19 @@
     </style>
   </head>
   <body>
+  <ul data-bind="template: {name:'location', foreach:location}"></ul>
+  <script type="text/html" id="location">
+    <li>
+      <strong data-bind="text: name">
+        <span data-bind="text: position"></span>
+      </strong>
+    </li>
+  </script>
 
-  	
+  <input placeholder="Search" type="search" data-bind="value: query, valueUpdate: 'keyup" autocomplete="off">
 
     <div class='col-1' id="map"></div>
-   
-    <script src="neighborhood_map.js">
-      
+    <script src="neighborhood_map.js">  
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5MhFR-mIMsTzanUl_RLvAq7KSuSadgww&callback=initMap"
     async defer></script>

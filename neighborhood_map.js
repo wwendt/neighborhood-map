@@ -36,3 +36,36 @@ var map;
       });
 
       }
+
+      var location = [
+        {
+          position:  {lat: 37.7749, lng:-122.4194},
+          name: marker,
+        },
+
+        {
+          position: {lat: 37.7749, lng: -122.4154},
+          name: marker2,
+        },
+
+      ]
+
+      var viewModel = function() {
+        var self = this;
+
+        location: ko.observableArray(location)
+        //self.obsArray =
+        //self.getYelp(query){
+          
+        };
+
+        ko.applyBindings(viewModel);
+
+      
+
+    //  @.ajax(url).then(function(data)){
+      //  placeconstructor.attr = data.attr
+
+        //data.attr = "phone number of the location"
+        //placeconstructor.phone = data.attr;
+      //}
