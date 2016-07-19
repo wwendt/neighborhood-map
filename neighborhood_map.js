@@ -4,12 +4,13 @@ var map;
           center: {lat: 37.7749, lng: -122.4194},
           zoom: 8
         });
-
-      var marker = new google.maps.Marker({
-    	position: {lat: 37.7749, lng: -122.4194},
-    	map: map,
-    	title: 'Hello World!'
-  		});
+        
+       /*var marker = new google.maps.Marker({
+      position: {lat: 37.7749, lng: -122.4194},
+      map: map,
+      title: 'Hello World!'
+      });
+      
 
       var marker2 = new google.maps.Marker({
       position: {lat: 37.7749, lng: -122.4154},
@@ -34,32 +35,61 @@ var map;
       map: map,
       title: 'Hello World!'
       });
+    */
 
       }
 
-      var location = [
+      var locations =  [
         {
           position:  {lat: 37.7749, lng:-122.4194},
-          name: marker,
+          name: "Location 1",
+          
+
         },
 
-        {
+        var marker5 = new google.maps.Marker({
           position: {lat: 37.7749, lng: -122.4154},
-          name: marker2,
-        },
+          name: "Location 2",
+
+        }),
+
+        {
+          position: {lat: 37.7649, lng: -122.4154},
+          name: "location 3"
+        }
 
       ]
 
+      var Location = function(data) {
+        this.name = data.name;
+
+
+
+
+      }
+
       var viewModel = function() {
         var self = this;
+        this.myLocations = ko.observableArray(locations);
+        this.myLocation = ko.observable(new Location(locations[0]));
+        console.log(this.myLocation());
 
-        location: ko.observableArray(location)
-        //self.obsArray =
+        this.query = ko.observable("");
+        this.trackQuery = ko.computed(function() {  
+           var query = self.query();     
+           console.log("query: ", query);  
+            });
+         //self.obsArray =
         //self.getYelp(query){
+
+         
           
         };
 
-        ko.applyBindings(viewModel);
+
+
+        var myViewModel = new viewModel();
+        ko.applyBindings(myViewModel);
 
       
 
