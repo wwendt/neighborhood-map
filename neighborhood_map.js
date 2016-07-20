@@ -5,7 +5,7 @@ var map;
           zoom: 8
         });
         
-       /*var marker = new google.maps.Marker({
+       var marker = new google.maps.Marker({
       position: {lat: 37.7749, lng: -122.4194},
       map: map,
       title: 'Hello World!'
@@ -35,7 +35,7 @@ var map;
       map: map,
       title: 'Hello World!'
       });
-    */
+    
 
       }
 
@@ -47,11 +47,11 @@ var map;
 
         },
 
-        var marker5 = new google.maps.Marker({
+        {
           position: {lat: 37.7749, lng: -122.4154},
           name: "Location 2",
 
-        }),
+        },
 
         {
           position: {lat: 37.7649, lng: -122.4154},
