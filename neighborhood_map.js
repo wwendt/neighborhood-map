@@ -28,16 +28,6 @@ var map;
           zoom: 8
         });
         
-       
-    
-
-      }
-
-      
-
-      var Location = function(data) {
-        this.name = data.name;
-
         var marker = new google.maps.Marker({
       position: {lat: 37.7749, lng: -122.4194},
       map: map,
@@ -68,6 +58,19 @@ var map;
       map: map,
       title: 'Hello World!'
       });
+       
+    
+
+      }
+
+      
+
+      var Location = function(data) {
+        this.name = data.name;
+        this.marker = ko.observableArray(locations);
+        this.marker2 = data.marker2;
+
+       // name = "Location 1";
 
 
 
