@@ -27,7 +27,10 @@ var map;
           center: {lat: 37.7749, lng: -122.4194},
           zoom: 8
         });
-        
+
+   for (var i = 0; i < myViewModel.myLocations().length; i++) {
+        console.log(myViewModel.myLocations(i));
+
         var marker = new google.maps.Marker({
       position: {lat: 37.7749, lng: -122.4194},
       map: map,
@@ -35,17 +38,11 @@ var map;
       });
       
 
-      var marker2 = new google.maps.Marker({
-      position: {lat: 37.7749, lng: -122.4154},
-      map: map,
-      title: 'Hello World!'
-      });
 
-      var marker3 = new google.maps.Marker({
-      position: {lat: 37.7749, lng: -122.4254},
-      map: map,
-      title: 'Hello World!'
-      });
+      }
+    
+    /*   
+        
 
       var marker4 = new google.maps.Marker({
       position: {lat: 37.7449, lng: -122.4154},
@@ -59,9 +56,11 @@ var map;
       title: 'Hello World!'
       });
        
-    
+    */
 
       }
+
+      
 
       
 
@@ -98,6 +97,8 @@ var map;
 
         var myViewModel = new viewModel();
         ko.applyBindings(myViewModel);
+
+        
 
       
 
