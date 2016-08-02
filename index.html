@@ -4,16 +4,7 @@
     <title>Neighborhood Map</title>
     <meta name="viewport" content="initial-scale=1.0">
     <meta charset="utf-8">
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
 
@@ -24,13 +15,20 @@
 
     <div class='col-1' id="map"></div>
     <!--template -->
-    <script type="text/html" id="location">
-    <li>
-      <strong data-bind="text: name">
-        <span data-bind="text: position"></span>
-      </strong>
-    </li>
-  </script>
+    <div class="container">
+
+      <div class="optionsBox">
+      <form>
+      <script type="text/html" id="location">
+          <li>
+              <strong data-bind="text: name">
+              <span data-bind="text: position"></span>
+              </strong>
+          </li>
+      </script>
+      </form>
+      </div>
+    </div>  
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>   
 
