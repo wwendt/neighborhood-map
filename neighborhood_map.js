@@ -32,9 +32,11 @@ var map;
         console.log(myViewModel.myLocations(i));
 
         var marker = new google.maps.Marker({
-      position: {lat: 37.7749, lng: -122.4194},
+      
+      position: myViewModel.myLocations()[i].position,
       map: map,
-      title: 'Hello World!'
+      name: myViewModel.myLocations()[i].name
+      
       });
       
 
