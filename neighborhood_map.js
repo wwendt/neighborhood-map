@@ -29,7 +29,7 @@ var map;
         });
 
    for (var i = 0; i < myViewModel.myLocations().length; i++) {
-        console.log(myViewModel.myLocations(i));
+        //console.log(myViewModel.myLocations(i));
 
         var marker = new google.maps.Marker({
       
@@ -84,12 +84,21 @@ var map;
         console.log(this.myLocation());
 
         this.query = ko.observable("");
-        this.trackQuery = ko.computed(function() {  
-           var query = self.query();     
-           console.log("query: ", query);  
-            });
+        this.query = ko.computed( function(value) {  
+         // var query = self.query().toLowerCase;  
+          viewModel.myLocations.removeAll();
+
+              
+          // console.log("query: ", query);  
+          for(var x in myLocations)
+           if (myLocations[x].name.toLowerCase().indexOf(value.toLowerCase()) >= 0){
+            viewModel.myLocations.push(myLocations[x]);
+           }
+            }
+            );
          //self.obsArray =
         //self.getYelp(query){
+
 
          
           
