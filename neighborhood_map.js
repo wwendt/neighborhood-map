@@ -84,16 +84,22 @@ var map;
         console.log(this.myLocation());
 
         this.query = ko.observable("");
-        this.query = ko.computed( function(value) {  
-         // var query = self.query().toLowerCase;  
-          viewModel.myLocations.removeAll();
+        this.query = ko.computed( function() {  
+          var query = self.query().toLowerCase();  
+          if (!query) {
+            return self.myLocations
+          }
+          else {
+            return ko.utils.arrayFilter(self.myLocations, function(myLocations){
+              var isMatch = myLocations.name.toLowerCase().indexOf(query) >=0;
+              return isMatch;
+            })
+          }
 
               
           // console.log("query: ", query);  
-          for(var x in myLocations)
-           if (myLocations[x].name.toLowerCase().indexOf(value.toLowerCase()) >= 0){
-            viewModel.myLocations.push(myLocations[x]);
-           }
+          
+           
             }
             );
          //self.obsArray =
