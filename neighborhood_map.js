@@ -84,14 +84,14 @@ var map;
         console.log(this.myLocation());
 
         this.query = ko.observable("");
-        this.query = ko.computed( function() {  
+        this.filteredArray = ko.computed( function() {  
           var query = self.query().toLowerCase();  
           if (!query) {
-            return self.myLocations
+            return self.myLocations()
           }
           else {
-            return ko.utils.arrayFilter(self.myLocations, function(myLocations){
-              var isMatch = myLocations.name.toLowerCase().indexOf(query) >=0;
+            return ko.utils.arrayFilter(self.myLocations(), function( myLocations) {
+              var isMatch = myLocations().name.toLowerCase().indexOf(query) >=0;
               return isMatch;
             })
           }
