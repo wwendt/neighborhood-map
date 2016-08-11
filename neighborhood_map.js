@@ -1,20 +1,28 @@
 var locations =  [
         {
-          position:  {lat: 37.7749, lng:-122.4194},
-          name: "Location 1",
+          position:  {lat: 37.786532, lng:-122.411525},
+          name: "Napa Valley Winery Exchange",
           
-
         },
 
         {
-          position: {lat: 37.7749, lng: -122.4154},
-          name: "Location 2",
-
+          position: {lat: 37.800644, lng: -122.438221},
+          name: "California Wine Merchant"
+          
         },
 
         {
-          position: {lat: 37.7649, lng: -122.4154},
-          name: "location 3"
+          position: {lat: 37.777353, lng: -122.422650},
+          name: "Arlequin Wine Merchant"
+        },
+        {
+          position: {lat: 37.797898, lng: -122.422449},
+          name: "Biondivino"
+        },
+
+        {
+          position: {lat: 37.797878, lng: -122.422297},
+          name: "William Cross Wine Merchants"
         }
 
       ]
@@ -90,8 +98,9 @@ var map;
             return self.myLocations()
           }
           else {
-            return ko.utils.arrayFilter(self.myLocations(), function( myLocations) {
-              var isMatch = myLocations().name.toLowerCase().indexOf(query) >=0;
+            return ko.utils.arrayFilter(self.myLocations(), function( location) {
+              var isMatch = location.name.toLowerCase().indexOf(query) >=0;
+              location.marker.setVisible(isMatch);
               return isMatch;
             })
           }
