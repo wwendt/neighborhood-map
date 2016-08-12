@@ -46,6 +46,7 @@ var map;
       name: myViewModel.myLocations()[i].name
       
       });
+        myViewModel.myLocations()[i].marker = marker;
       
 
 
