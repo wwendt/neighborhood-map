@@ -120,7 +120,20 @@ var map;
           
         };
 
- /     $.ajax(settings).done(function(data) {
+     function nonce_generate() {
+  return (Math.floor(Math.random() * 1e12).toString());
+}
+
+var YELP_BASE_URL = "http://api.yelp.com/v2/search";
+var yelp_url = YELP_BASE_URL;
+
+var yelp_url = YELP_BASE_URL + 'business/' + self.selected_place().Yelp.business_id;
+
+var encodedSignature = oauthSignature.generate('GET',yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
+    parameters.oauth_signature = encodedSignature;
+
+
+     $.ajax(settings).done(function(data) {
   var parameters = {
     oauth_consumer_key: "jm06CzZZen_oNkv_p8thnA",
     oauth_token: "g7zqOkvW1IIFBcTHiQGG3QnHWTGakuj-",
@@ -132,6 +145,24 @@ var map;
     term: 'Winery',
     location: '22630'
   };
+
+
+    var settings = {
+      url: yelp_url,
+      data: parameters,
+      cache: true,                // This is crucial to include as well to prevent jQuery from adding on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
+      dataType: 'jsonp',
+      success: function(results) {
+        // Do stuff with results
+      },
+      fail: function() {
+        // Do stuff on fail
+      }
+    };
+
+    // Send AJAX query via jQuery library.
+    $.ajax(settings);
+
   var yelpLocations = data.businesses;
   yelpLocations.forEach(function(location) {
     var loc = {};
