@@ -120,21 +120,30 @@ var map;
           
         };
 
-        $.ajax(settings)
-.done( function( data ) {
-  var yelpAPI = "https://api.yelp.com/v2/search/?term=California Wine Merchant&location=San Francisco, CA&category_filter=wineries";
+ /     $.ajax(settings).done(function(data) {
+  var parameters = {
+    oauth_consumer_key: "jm06CzZZen_oNkv_p8thnA",
+    oauth_token: "g7zqOkvW1IIFBcTHiQGG3QnHWTGakuj-",
+    oauth_nonce: nonceGenerate(),
+    oauth_timestamp: Math.floor(Date.now()/1000),
+    oauth_signature_method: 'HMAC-SHA1',
+    oauth_version: '1.0',
+    callback: 'cb',
+    term: 'Winery',
+    location: '22630'
+  };
   var yelpLocations = data.businesses;
-  yelpLocations.forEach( function(location){
-     var loc = {};
-     loc.name = location.name;
-     loc.phone = location.display_phone;
-     loc.lat = location.location.coordinate.latitude;
-     loc.lng = location.location.coordinate.longitude;
-     // etc.  -- add whatever data looks interesting
-     // when done, push the location into the location array for the app
-     locationsArray.push(appLocation)
-  }
-};
+  yelpLocations.forEach(function(location) {
+    var loc = {};
+    loc.name = location.name;
+    loc.phone = location.display_phone;
+    loc.lat = location.location.coordinate.latitude;
+    loc.lng = location.location.coordinate.longitude;
+    // etc.  -- add whatever data looks interesting
+    // when done, push the location into the location array for the app
+    locationsArray.push(appLocation)
+  });
+});
 
 
 
