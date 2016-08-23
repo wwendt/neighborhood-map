@@ -21,7 +21,7 @@
        <ul data-bind="template: {name:'location', foreach:filteredArray}"></ul>
       <form>
       <script type="text/html" id="location">
-          <li>
+          <li data-bind="click: $root.listClick">
               <strong data-bind="text: name">
               <span data-bind="text: position"></span>
               </strong>
