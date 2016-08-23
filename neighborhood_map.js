@@ -114,54 +114,72 @@ var map;
             );
          //self.obsArray =
         //self.getYelp(query){
-
-
          
-          
+
+         this.listClick = function(location) {
+      console.log(location);
+    } 
         };
+
+        
 
      function nonce_generate() {
   return (Math.floor(Math.random() * 1e12).toString());
-}
+};
 
 var YELP_BASE_URL = "http://api.yelp.com/v2/search";
 var yelp_url = YELP_BASE_URL;
-
-var yelp_url = YELP_BASE_URL + 'business/' + self.selected_place().Yelp.business_id;
-
-var encodedSignature = oauthSignature.generate('GET',yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
-    parameters.oauth_signature = encodedSignature;
-
-
-     $.ajax(settings).done(function(data) {
-  var parameters = {
+var YELP_KEY_SECRET = 'VkPLkNT6aJ6pVkLYhlzrYbjbqQQ';
+var YELP_TOKEN_SECRET = 'p17i1pe9qahC-_vaOEegCM81BcM';
+var parameters = {
     oauth_consumer_key: "jm06CzZZen_oNkv_p8thnA",
     oauth_token: "g7zqOkvW1IIFBcTHiQGG3QnHWTGakuj-",
-    oauth_nonce: nonceGenerate(),
-    oauth_timestamp: Math.floor(Date.now()/1000),
+    oauth_nonce: nonce_generate(),
+    oauth_timestamp: Math.floor(Date.now() / 1000),
     oauth_signature_method: 'HMAC-SHA1',
     oauth_version: '1.0',
     callback: 'cb',
-    term: 'Winery',
-    location: '22630'
+    term: 'William Cross Wine Merchants',
+    location: 'San Francisco',
+    limit: 1
   };
 
 
-    var settings = {
+//var yelp_url = YELP_BASE_URL + '/business/' + self.selected_place().Yelp.business_id;
+ var settings = {
       url: yelp_url,
       data: parameters,
       cache: true,                // This is crucial to include as well to prevent jQuery from adding on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
       dataType: 'jsonp',
-      success: function(results) {
+       success: function(results) {
+        console.log('it worked');
         // Do stuff with results
-      },
-      fail: function() {
+        console.log(results);
+    },
+    fail: function() {
+        console.log('it failed');
         // Do stuff on fail
-      }
+    }
     };
 
+    var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
+parameters.oauth_signature = encodedSignature;
+
+$.ajax(settings);
+
+/*$.ajax(settings).done(function(data) {
+  
+
+
+
+
+     
+
+
+   
+
     // Send AJAX query via jQuery library.
-    $.ajax(settings);
+    
 
   var yelpLocations = data.businesses;
   yelpLocations.forEach(function(location) {
@@ -175,6 +193,7 @@ var encodedSignature = oauthSignature.generate('GET',yelp_url, parameters, YELP_
     locationsArray.push(appLocation)
   });
 });
+*/
 
 
 
