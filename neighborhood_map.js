@@ -71,6 +71,8 @@ var map;
 
       }
 
+  function getYelpData(location) {    
+
          function nonce_generate() {
   return (Math.floor(Math.random() * 1e12).toString());
 };
@@ -109,6 +111,12 @@ var parameters = {
         // Do stuff on fail
     }
     };
+
+    var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
+parameters.oauth_signature = encodedSignature;
+  $.ajax(settings);
+
+  }
 
       
 
@@ -157,7 +165,8 @@ var parameters = {
 
          this.listClick = function(location) {
       console.log(location);
-      $.ajax(settings);
+      
+      getYelpData(location.name);
     } 
         };
 
@@ -165,8 +174,7 @@ var parameters = {
 
   
 
-    var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
-parameters.oauth_signature = encodedSignature;
+    
 
 
 
