@@ -51,6 +51,11 @@ var map;
 
 
       }
+
+      var infowindow = new google.maps.InfoWindow({
+      content: ?
+         });
+       
     
     /*   
         
@@ -89,7 +94,7 @@ var parameters = {
     oauth_signature_method: 'HMAC-SHA1',
     oauth_version: '1.0',
     callback: 'cb',
-    term: 'William Cross Wine Merchants',
+    term: location,
     location: 'San Francisco',
     limit: 1
   };
@@ -105,6 +110,11 @@ var parameters = {
         console.log('it worked');
         // Do stuff with results
         console.log(results);
+        infowindow.setContent(parameters);
+        infowindow.open();
+
+        
+
     },
     fail: function() {
         console.log('it failed');
