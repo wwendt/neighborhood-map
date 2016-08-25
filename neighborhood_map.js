@@ -53,7 +53,7 @@ var map;
       }
 
       var infowindow = new google.maps.InfoWindow({
-      content: ?
+      content: myViewModel.myLocations().name
          });
        
     
