@@ -1,62 +1,77 @@
-var locations =  [
-        {
-          position:  {lat: 37.786532, lng:-122.411525},
-          name: "Napa Valley Winery Exchange",
-          
+var locations = [{
+        position: {
+            lat: 37.786532,
+            lng: -122.411525
         },
+        name: "Napa Valley Winery Exchange",
 
-        {
-          position: {lat: 37.800644, lng: -122.438221},
-          name: "California Wine Merchant"
-          
+    },
+
+    {
+        position: {
+            lat: 37.800644,
+            lng: -122.438221
         },
+        name: "California Wine Merchant"
 
-        {
-          position: {lat: 37.777353, lng: -122.422650},
-          name: "Arlequin Wine Merchant"
+    },
+
+    {
+        position: {
+            lat: 37.777353,
+            lng: -122.422650
         },
-        {
-          position: {lat: 37.797898, lng: -122.422449},
-          name: "Biondivino"
+        name: "Arlequin Wine Merchant"
+    }, {
+        position: {
+            lat: 37.797898,
+            lng: -122.422449
         },
+        name: "Biondivino"
+    },
 
-        {
-          position: {lat: 37.797878, lng: -122.422297},
-          name: "William Cross Wine Merchants"
-        }
+    {
+        position: {
+            lat: 37.797878,
+            lng: -122.422297
+        },
+        name: "William Cross Wine Merchants"
+    }
 
-      ]
+]
 
 
 
-var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 37.7749, lng: -122.4194},
-          zoom: 8
-        });
+var map, infowindow;
 
-   for (var i = 0; i < myViewModel.myLocations().length; i++) {
+function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+            lat: 37.7749,
+            lng: -122.4194
+        },
+        zoom: 8
+    });
+
+    for (var i = 0; i < myViewModel.myLocations().length; i++) {
         //console.log(myViewModel.myLocations(i));
 
         var marker = new google.maps.Marker({
-      
-      position: myViewModel.myLocations()[i].position,
-      map: map,
-      name: myViewModel.myLocations()[i].name
-      
-      });
+
+            position: myViewModel.myLocations()[i].position,
+            map: map,
+            name: myViewModel.myLocations()[i].name
+
+        });
         myViewModel.myLocations()[i].marker = marker;
-      
 
 
-      }
 
-      var infowindow = new google.maps.InfoWindow({
-      content: myViewModel.myLocations().name
-         });
-       
-    
+    }
+
+    infowindow = new google.maps.InfoWindow({});
+
+
     /*   
         
 
@@ -74,117 +89,111 @@ var map;
        
     */
 
-      }
+}
 
-  function getYelpData(location) {    
+function getYelpData(location) {
 
-         function nonce_generate() {
-  return (Math.floor(Math.random() * 1e12).toString());
-};
+    function nonce_generate() {
+        return (Math.floor(Math.random() * 1e12).toString());
+    };
 
-var YELP_BASE_URL = "http://api.yelp.com/v2/search";
-var yelp_url = YELP_BASE_URL;
-var YELP_KEY_SECRET = 'VkPLkNT6aJ6pVkLYhlzrYbjbqQQ';
-var YELP_TOKEN_SECRET = 'p17i1pe9qahC-_vaOEegCM81BcM';
-var parameters = {
-    oauth_consumer_key: "jm06CzZZen_oNkv_p8thnA",
-    oauth_token: "g7zqOkvW1IIFBcTHiQGG3QnHWTGakuj-",
-    oauth_nonce: nonce_generate(),
-    oauth_timestamp: Math.floor(Date.now() / 1000),
-    oauth_signature_method: 'HMAC-SHA1',
-    oauth_version: '1.0',
-    callback: 'cb',
-    term: location,
-    location: 'San Francisco',
-    limit: 1
-  };
+    var YELP_BASE_URL = "http://api.yelp.com/v2/search";
+    var yelp_url = YELP_BASE_URL;
+    var YELP_KEY_SECRET = 'VkPLkNT6aJ6pVkLYhlzrYbjbqQQ';
+    var YELP_TOKEN_SECRET = 'p17i1pe9qahC-_vaOEegCM81BcM';
+    var parameters = {
+        oauth_consumer_key: "jm06CzZZen_oNkv_p8thnA",
+        oauth_token: "g7zqOkvW1IIFBcTHiQGG3QnHWTGakuj-",
+        oauth_nonce: nonce_generate(),
+        oauth_timestamp: Math.floor(Date.now() / 1000),
+        oauth_signature_method: 'HMAC-SHA1',
+        oauth_version: '1.0',
+        callback: 'cb',
+        term: location,
+        location: 'San Francisco',
+        limit: 1
+    };
 
 
-//var yelp_url = YELP_BASE_URL + '/business/' + self.selected_place().Yelp.business_id;
- var settings = {
-      url: yelp_url,
-      data: parameters,
-      cache: true,                // This is crucial to include as well to prevent jQuery from adding on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
-      dataType: 'jsonp',
-       success: function(results) {
-        console.log('it worked');
-        // Do stuff with results
-        console.log(results);
-        infowindow.setContent(parameters);
-        infowindow.open();
+    //var yelp_url = YELP_BASE_URL + '/business/' + self.selected_place().Yelp.business_id;
+    var settings = {
+        url: yelp_url,
+        data: parameters,
+        cache: true, // This is crucial to include as well to prevent jQuery from adding on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
+        dataType: 'jsonp',
+        success: function(results) {
+            console.log('it worked');
+            // Do stuff with results
+            console.log(results);
+            var contentString = '<h3>' + location.name + '</h3>';
+            contentString += '<p>Rating:' + results.businesses[0].rating + '</p>';
+            infowindow.setContent(contentString);
+            infowindow.open(map, marker);
 
-        
 
-    },
-    fail: function() {
-        console.log('it failed');
-        // Do stuff on fail
-    }
+        },
+        fail: function() {
+            console.log('it failed');
+            // Do stuff on fail
+        }
     };
 
     var encodedSignature = oauthSignature.generate('GET', yelp_url, parameters, YELP_KEY_SECRET, YELP_TOKEN_SECRET);
-parameters.oauth_signature = encodedSignature;
-  $.ajax(settings);
+    parameters.oauth_signature = encodedSignature;
+    $.ajax(settings);
 
-  }
-
-      
-
-      
-
-      var Location = function(data) {
-        this.name = data.name;
-        this.marker = ko.observableArray(locations);
-        this.marker2 = data.marker2;
-
-       // name = "Location 1";
+}
 
 
 
-      }
 
-      var viewModel = function() {
-        var self = this;
-        this.myLocations = ko.observableArray(locations);
-        this.myLocation = ko.observable(new Location(locations[0]));
-        console.log(this.myLocation());
+var Location = function(data) {
+    this.name = data.name;
+    this.marker = ko.observableArray(locations);
+    this.marker2 = data.marker2;
 
-        this.query = ko.observable("");
-        this.filteredArray = ko.computed( function() {  
-          var query = self.query().toLowerCase();  
-          if (!query) {
+    // name = "Location 1";
+
+
+
+}
+
+var viewModel = function() {
+    var self = this;
+    this.myLocations = ko.observableArray(locations);
+    this.myLocation = ko.observable(new Location(locations[0]));
+    console.log(this.myLocation());
+
+    this.query = ko.observable("");
+    this.filteredArray = ko.computed(function() { 
+        var query = self.query().toLowerCase(); 
+        if (!query) {
             return self.myLocations()
-          }
-          else {
-            return ko.utils.arrayFilter(self.myLocations(), function( location) {
-              var isMatch = location.name.toLowerCase().indexOf(query) >=0;
-              location.marker.setVisible(isMatch);
-              return isMatch;
+        } else {
+            return ko.utils.arrayFilter(self.myLocations(), function(location) {
+                var isMatch = location.name.toLowerCase().indexOf(query) >= 0;
+                location.marker.setVisible(isMatch);
+                return isMatch;
             })
-          }
+        }
 
-              
-          // console.log("query: ", query);  
-          
-           
-            }
-            );
-         //self.obsArray =
-        //self.getYelp(query){
-         
 
-         this.listClick = function(location) {
-      console.log(location);
-      
-      getYelpData(location.name);
-    } 
-        };
+        // console.log("query: ", query);
+         
 
-        
 
-  
+    });
+    //self.obsArray =
+    //self.getYelp(query){
 
-    
+
+    this.listClick = function(location) {
+        console.log(location);
+
+        getYelpData(location.name);
+    }
+};
+
 
 
 
@@ -218,8 +227,8 @@ parameters.oauth_signature = encodedSignature;
 
 
 
-        var myViewModel = new viewModel();
-        ko.applyBindings(myViewModel);
+var myViewModel = new viewModel();
+ko.applyBindings(myViewModel);
 
         
 
