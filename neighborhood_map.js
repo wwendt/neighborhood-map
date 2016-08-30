@@ -101,6 +101,11 @@ function getYelpData(location) {
     var yelp_url = YELP_BASE_URL;
     var YELP_KEY_SECRET = 'VkPLkNT6aJ6pVkLYhlzrYbjbqQQ';
     var YELP_TOKEN_SECRET = 'p17i1pe9qahC-_vaOEegCM81BcM';
+    var term = location.name;
+    marker = location.marker;
+    placeName = location.name;
+
+
     var parameters = {
         oauth_consumer_key: "jm06CzZZen_oNkv_p8thnA",
         oauth_token: "g7zqOkvW1IIFBcTHiQGG3QnHWTGakuj-",
@@ -109,7 +114,7 @@ function getYelpData(location) {
         oauth_signature_method: 'HMAC-SHA1',
         oauth_version: '1.0',
         callback: 'cb',
-        term: location,
+        term: term,
         location: 'San Francisco',
         limit: 1
     };
@@ -125,7 +130,7 @@ function getYelpData(location) {
             console.log('it worked');
             // Do stuff with results
             console.log(results);
-            var contentString = '<h3>' + location.name + '</h3>';
+            var contentString = '<h3>' + placeName + '</h3>';
             contentString += '<p>Rating:' + results.businesses[0].rating + '</p>';
             infowindow.setContent(contentString);
             infowindow.open(map, marker);
