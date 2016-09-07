@@ -195,7 +195,7 @@ var viewModel = function() {
     this.listClick = function(location) {
         console.log(location);
 
-        getYelpData(location.name);
+        getYelpData(location);
     }
 };
 
