@@ -66,6 +66,27 @@ function initMap() {
         myViewModel.myLocations()[i].marker = marker;
 
 
+         function toggleBounce() {
+      if (marker.getAnimation() !== null) {
+         marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+  };
+        
+
+      //marker.addListener('click', toggleBounce);
+
+        marker.addListener('click', toggleBounce, function() {
+          console.log("success");
+          var contentString = '<h3>' + placeName + '</h3>';
+            contentString += '<p>Rating:' + results.businesses[0].rating + '</p>';
+            infowindow.setContent(contentString);
+            infowindow.open(map, marker);
+
+         
+        });
+
 
     }
 
@@ -140,6 +161,7 @@ function getYelpData(location) {
         fail: function() {
             console.log('it failed');
             // Do stuff on fail
+            alert("it failed");
         }
     };
 
