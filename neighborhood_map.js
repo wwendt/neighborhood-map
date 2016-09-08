@@ -53,6 +53,14 @@ function initMap() {
         zoom: 8
     });
 
+       function toggleBounce() {
+      if (marker.getAnimation() !== null) {
+         marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+  };
+
     for (var i = 0; i < myViewModel.myLocations().length; i++) {
         //console.log(myViewModel.myLocations(i));
 
@@ -66,18 +74,14 @@ function initMap() {
         myViewModel.myLocations()[i].marker = marker;
 
 
-         function toggleBounce() {
-      if (marker.getAnimation() !== null) {
-         marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
-  };
+      
         
 
       //marker.addListener('click', toggleBounce);
 
-        marker.addListener('click', toggleBounce, function() {
+        marker.addListener('click', function() {
+          toggleBounce(this);
+          
           console.log("success");
           var contentString = '<h3>' + placeName + '</h3>';
             contentString += '<p>Rating:' + results.businesses[0].rating + '</p>';
