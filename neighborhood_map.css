@@ -1,6 +1,7 @@
 
- html, body {
+ html, body, main {
         height: 100%;
+        width: 100%;
         margin: 0;
         padding: 0;
       }
@@ -16,11 +17,40 @@
 
 .container{
 	width: 100%;
+	
 }
 
 .optionsBox{
 	float: left;
 	width: 25%;
 	
+
+	}
+
+.optionsBox.open{
+	transform: translate(0, 0);
+}	
+
+@media screen and (min-width: 600px) {
+	.optionsBox {
+		position: relative;
+		transform: translate(0, 0);
+		width: 300px;
+		height: 100%;
+		position: absolute;
+		transform: translate(-300px, 0);
+		transition: transform 0.3s ease;
+	}
+
+	body {
+		display: flex;
+		flex-flow: row nowrap;
+	}
+
+	main {
+		width: auto;
+		flex-grow: 1;
+	}
 }
+	
 

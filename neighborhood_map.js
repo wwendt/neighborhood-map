@@ -44,6 +44,14 @@ var locations = [{
 
 var map, infowindow;
 
+function toggleBounce(marker) {
+      if (marker.getAnimation() !== null) {
+         marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+  };
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
@@ -53,13 +61,7 @@ function initMap() {
         zoom: 8
     });
 
-       function toggleBounce() {
-      if (marker.getAnimation() !== null) {
-         marker.setAnimation(null);
-        } else {
-          marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
-  };
+       
 
     for (var i = 0; i < myViewModel.myLocations().length; i++) {
         //console.log(myViewModel.myLocations(i));
@@ -68,7 +70,8 @@ function initMap() {
 
             position: myViewModel.myLocations()[i].position,
             map: map,
-            name: myViewModel.myLocations()[i].name
+            name: myViewModel.myLocations()[i].name,
+            animation: null
 
         });
         myViewModel.myLocations()[i].marker = marker;
@@ -81,6 +84,7 @@ function initMap() {
 
         marker.addListener('click', function() {
           toggleBounce(this);
+          getYelpData(this);
           
           console.log("success");
           var contentString = '<h3>' + placeName + '</h3>';
@@ -116,7 +120,7 @@ function initMap() {
 
 }
 
-function getYelpData(location) {
+function getYelpData(marker) {
 
     function nonce_generate() {
         return (Math.floor(Math.random() * 1e12).toString());
@@ -126,9 +130,9 @@ function getYelpData(location) {
     var yelp_url = YELP_BASE_URL;
     var YELP_KEY_SECRET = 'VkPLkNT6aJ6pVkLYhlzrYbjbqQQ';
     var YELP_TOKEN_SECRET = 'p17i1pe9qahC-_vaOEegCM81BcM';
-    var term = location.name;
-    marker = location.marker;
-    placeName = location.name;
+    var term = marker.name;
+   // marker = location.marker;
+    placeName = marker.name;
 
 
     var parameters = {
@@ -221,7 +225,7 @@ var viewModel = function() {
     this.listClick = function(location) {
         console.log(location);
 
-        getYelpData(location);
+        getYelpData(location.marker);
     }
 };
 

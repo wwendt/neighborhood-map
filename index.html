@@ -10,14 +10,19 @@
 
  
 
-  <strong>Wine Merchants</strong>
-  <input autocomplete="off" data-bind="value: query, valueUpdate: 'keyup'", placeholder="Search" type="search">
+  
 
     <div class='col-1' id="map"></div>
     <!--template -->
     <div class="container">
 
+
+
       <div class="optionsBox">
+        <strong>Wine Merchants</strong>
+     <input autocomplete="off" data-bind="value: query, valueUpdate: 'keyup'", placeholder="Search" type="search">
+
+
        <ul data-bind="template: {name:'location', foreach:filteredArray}"></ul>
       <form>
       <script type="text/html" id="location">
