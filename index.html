@@ -31,6 +31,14 @@
               <span data-bind="text: position"></span>
               </strong>
           </li>
+
+    <script type="text/javascript">
+      menu.addEventListener('click', function(e) {
+  drawer.classList.toggle('open');
+  e.stopPropagation();
+});
+    </script>      
+
       </script>
       </form>
       </div>
