@@ -1,41 +1,41 @@
 var locations = [{
         position: {
-            lat: 37.786532,
-            lng: -122.411525
+            lat: 37.788571,
+            lng: -122.441498
         },
-        name: "Napa Valley Winery Exchange",
+        name: "Eliza's",
 
     },
 
     {
         position: {
-            lat: 37.800644,
-            lng: -122.438221
+            lat: 37.774206,
+            lng: -122.506071
         },
-        name: "California Wine Merchant"
+        name: "Hakka Restaurant"
 
     },
 
     {
         position: {
-            lat: 37.777353,
-            lng: -122.422650
+            lat: 37.760987,
+            lng: -122.438695
         },
-        name: "Arlequin Wine Merchant"
+        name: "Mama Ji's"
     }, {
         position: {
-            lat: 37.797898,
-            lng: -122.422449
+            lat: 37.775947,
+            lng: -122.494515
         },
-        name: "Biondivino"
+        name: "Shanghai Dumpling King"
     },
 
     {
         position: {
-            lat: 37.797878,
-            lng: -122.422297
+            lat: 37.796794,
+            lng: -122.405446
         },
-        name: "William Cross Wine Merchants"
+        name: "House of Nanking"
     }
 
 ]

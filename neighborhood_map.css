@@ -8,19 +8,18 @@
      #map {
      	bottom: 0px;
     	left: 0px;
-    	position: relative;
+    	position: absolute;
         height: 100%;
         float: right;
-        width: 74%;
+        width: 100%;
       }
 
 
-.container{
-	width: 100%;
-	
+
 }
 
 .optionsBox{
+	background-color: white;
 	float: left;
 	width: 25%;
 	position: absolute;
@@ -38,6 +37,11 @@
 	transform: translate(0, 0);
 }	
 
+svg {
+	width: 40px;
+	position: relative;
+}
+
 @media screen and (min-width: 600px) {
 	.optionsBox {
 		position: relative;
@@ -47,6 +51,7 @@
 		position: absolute;
 		transform: translate(-300px, 0);
 		transition: transform 0.3s ease;
+		background-color: white;
 	}
 
 	body {
