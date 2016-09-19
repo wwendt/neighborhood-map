@@ -82,13 +82,13 @@ function initMap() {
 
       //marker.addListener('click', toggleBounce);
 
-        marker.addListener('click', function(results) {
+        marker.addListener('click', function() {
           toggleBounce(this);
           getYelpData(this);
-          this.results = results;
+          
           console.log("success");
           var contentString = '<h3>' + placeName + '</h3>';
-            contentString += '<p>Rating:' + results.businesses[0].rating + '</p>';
+           // contentString += '<p>Rating:' + results.businesses[0].rating + '</p>';
             infowindow.setContent(contentString);
             infowindow.open(map, marker);
 
