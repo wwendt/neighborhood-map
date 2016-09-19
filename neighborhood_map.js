@@ -82,10 +82,10 @@ function initMap() {
 
       //marker.addListener('click', toggleBounce);
 
-        marker.addListener('click', function() {
+        marker.addListener('click', function(results) {
           toggleBounce(this);
           getYelpData(this);
-          
+          this.results = results;
           console.log("success");
           var contentString = '<h3>' + placeName + '</h3>';
             contentString += '<p>Rating:' + results.businesses[0].rating + '</p>';
@@ -156,6 +156,7 @@ function getYelpData(marker) {
         cache: true, // This is crucial to include as well to prevent jQuery from adding on a cache-buster parameter "_=23489489749837", invalidating our oauth-signature
         dataType: 'jsonp',
         success: function(results) {
+            this.results = results;
             console.log('it worked');
             // Do stuff with results
             console.log(results);
