@@ -162,7 +162,7 @@ function getYelpData(marker) {
             console.log(results);
             var contentString = '<h3>' + placeName + '</h3>';
             contentString += '<p>Rating:' + results.businesses[0].rating + '</p>';
-            contentString += "<img>" + results.businesses[0].image_url + "</img>" ; 
+            contentString += '<img class="bgimg" src="' + results.businesses[0].image_url + '">' + "</img>" ; 
             infowindow.setContent(contentString);
             infowindow.open(map, marker);
 
