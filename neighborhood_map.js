@@ -162,15 +162,16 @@ function getYelpData(marker) {
             console.log(results);
             var contentString = '<h3>' + placeName + '</h3>';
             contentString += '<p>Rating:' + results.businesses[0].rating + '</p>';
+            contentString += "<img>" + results.businesses[0].image_url + "</img>" ; 
             infowindow.setContent(contentString);
             infowindow.open(map, marker);
 
 
         },
-        fail: function() {
+        error: function() {
             console.log('it failed');
             // Do stuff on fail
-            alert("it failed");
+            alert("error");
         }
     };
 
