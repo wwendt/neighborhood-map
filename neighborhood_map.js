@@ -52,6 +52,12 @@ function toggleBounce(marker) {
     }
   };
 
+  function googleError(){
+    if (typeof map == 'undefined'){
+      alert("error");
+    }
+  }
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
